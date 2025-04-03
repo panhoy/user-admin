@@ -1,0 +1,953 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<style>
+    /* === ADMIN PAGE CSS === */
+/* Modern Reset and Base Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Admin Section Styling */
+.admin-section {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 25px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.admin-section h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #2c3e50;
+    font-weight: 600;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 12px;
+}
+
+/* Admin Container Layout */
+.admin-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 6px;
+}
+
+/* Admin Profile */
+.admin-profile {
+    display: flex;
+    align-items: center;
+}
+
+.photo-placeholder {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 15px;
+    border: 3px solid #f0f0f0;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.photo-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.name {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+/* Admin Controls */
+.admin-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.admin-controls button {
+    padding: 10px 16px;
+    background-color: #4a6cf7;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.admin-controls button:hover {
+    background-color: #3a5bd9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* User Section Styling */
+.user-section {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 25px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.user-section h2 {
+    margin-bottom: 24px;
+    font-size: 24px;
+    color: #2c3e50;
+    font-weight: 600;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 12px;
+}
+
+/* Search Bar Styling */
+.search-bar {
+    display: flex;
+    margin-bottom: 24px;
+    align-items: center;
+}
+
+.search-bar input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1px solid #e1e4e8;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    max-width: 400px;
+}
+
+.search-bar input:focus {
+    outline: none;
+    border-color: #4a6cf7;
+    box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.15);
+}
+
+.search-bar button {
+    padding: 12px 16px;
+    margin-left: 12px;
+    background-color: #4a6cf7;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.search-bar button:hover {
+    background-color: #3a5bd9;
+    transform: translateY(-1px);
+}
+
+/* User Count */
+.user-count {
+    margin-bottom: 24px;
+    font-size: 16px;
+    color: #6c757d;
+    background-color: #f8f9fa;
+    padding: 10px 16px;
+    border-radius: 6px;
+    display: inline-block;
+}
+
+/* User Cards Layout */
+.user-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+/* User Card Design */
+.user-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border-top: 3px solid #4a6cf7;
+}
+
+.user-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.user-card h3 {
+    margin: 12px 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.user-card p {
+    margin: 8px 0;
+    color: #5a6a7e;
+    font-size: 14px;
+}
+
+/* Button Group Styles */
+.user-card .button-group {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.user-card button {
+    padding: 8px 12px;
+    font-size: 13px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex: 1;
+    font-weight: 500;
+}
+
+/* Different Button Types */
+.user-card .view-btn {
+    background-color: #17a2b8;
+    color: white;
+}
+
+.user-card .view-btn:hover {
+    background-color: #138496;
+}
+
+.user-card .edit-btn {
+    background-color: #4a6cf7;
+    color: white;
+}
+
+.user-card .edit-btn:hover {
+    background-color: #3a5bd9;
+}
+
+.user-card .delete-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+.user-card .delete-btn:hover {
+    background-color: #c82333;
+}
+
+/* Status Styles */
+.status-active,
+.status-inactive,
+.status-pending,
+.status-suspended {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    margin-left: 8px;
+}
+
+.status-active {
+    background-color: rgba(40, 167, 69, 0.1);
+    color: #28a745;
+}
+
+.status-active::before {
+    content: "Active";
+}
+
+.status-inactive {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+}
+
+.status-inactive::before {
+    content: "Inactive";
+}
+
+/* Modal Styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 500px;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-content h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #2c3e50;
+    font-size: 22px;
+    font-weight: 600;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 10px;
+}
+
+/* Form Styling */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #495057;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e1e4e8;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #4a6cf7;
+    box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.15);
+}
+
+/* Modal Buttons */
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+.modal-buttons button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.modal-buttons button[type="submit"] {
+    background-color: #4a6cf7;
+    color: white;
+}
+
+.modal-buttons button[type="submit"]:hover {
+    background-color: #3a5bd9;
+}
+
+.modal-buttons .cancel {
+    background-color: #dc3545;
+    color: white;
+}
+
+.modal-buttons .cancel:hover {
+    background-color: #c82333;
+}
+
+/* Notification */
+.notification {
+    display: none;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    padding: 15px 25px;
+    border-radius: 6px;
+    color: white;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1100;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(100px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+.notification.show {
+    display: block;
+}
+
+.notification.success {
+    background-color: #28a745;
+}
+
+.notification.error {
+    background-color: #dc3545;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .admin-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .admin-profile {
+        margin-bottom: 15px;
+    }
+    
+    .admin-controls {
+        width: 100%;
+    }
+    
+    .admin-controls button {
+        flex: 1;
+        text-align: center;
+    }
+    
+    .user-cards {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    }
+    
+    .search-bar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .search-bar input {
+        width: 100%;
+        max-width: none;
+        margin-bottom: 12px;
+    }
+    
+    .search-bar button {
+        margin-left: 0;
+        width: 100%;
+    }
+    
+    .modal-content {
+        margin: 20% auto;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .user-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .modal-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .modal-buttons button {
+        width: 100%;
+    }
+}
+</style>
+<body>
+    <div id="app">
+        <!-- Create User Modal -->
+        <div id="createUserModal" class="modal">
+            <div class="modal-content">
+                <h3>Create New User</h3>
+                <form id="createUserForm">
+                    <div class="form-group">
+                        <label for="userName">Full Name:</label>
+                        <input type="text" id="userName" required placeholder="Enter full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="userEmail">Email Address:</label>
+                        <input type="email" id="userEmail" required placeholder="Enter email address">
+                    </div>
+                    <div class="form-group">
+                        <label for="userRole">Role:</label>
+                        <select id="userRole" required>
+                            <option value="">Select a role</option>
+                            <option value="Admin">Admin</option>
+                            <option value="Manager">Manager</option>
+                            <option value="Editor">Editor</option>
+                            <option value="User">User</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="userPhoto">Photo URL (optional):</label>
+                        <input type="text" id="userPhoto" placeholder="Enter photo URL">
+                    </div>
+                    <div class="form-group">
+                        <label for="userStatus">Status:</label>
+                        <select id="userStatus" required>
+                            <option value="active" selected>Active</option>
+                            <option value="inactive">Inactive</option>
+                        </select>
+                    </div>
+                    <div class="modal-buttons">
+                        <button type="submit">Create User</button>
+                        <button type="button" class="cancel">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Edit User Modal -->
+        <div id="editUserModal" class="modal">
+            <div class="modal-content">
+                <h3>Edit User</h3>
+                <form id="editUserForm">
+                    <input type="hidden" id="editUserId">
+                    <div class="form-group">
+                        <label for="editUserName">Full Name:</label>
+                        <input type="text" id="editUserName" required placeholder="Enter full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="editUserEmail">Email Address:</label>
+                        <input type="ID" id="editUserEmail" required placeholder="Enter ID">
+                    </div>
+                    <div class="form-group">
+                        <label for="editUserRole">Role:</label>
+                        <select id="editUserRole" required>
+                            <option value="">Select a role</option>
+                            <option value="Admin">Admin</option>
+                            <option value="Manager">Manager</option>
+                            <option value="Editor">Editor</option>
+                            <option value="User">User</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="editUserPhoto">Photo URL (optional):</label>
+                        <input type="text" id="editUserPhoto" placeholder="Enter photo URL">
+                    </div>
+                    <div class="form-group">
+                        <label for="editUserStatus">Status:</label>
+                        <select id="editUserStatus" required>
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                        </select>
+                    </div>
+                    <div class="modal-buttons">
+                        <button type="submit">Save Changes</button>
+                        <button type="button" class="cancel">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Notification -->
+        <div id="notification" class="notification">
+            Operation successful!
+        </div>
+
+        <!-- Admin Section -->
+        <section class="admin-section">
+            <h2>Admin Panel</h2>
+            <div class="admin-container">
+                <div class="admin-profile">
+                    <div class="photo-placeholder">
+                        <img src="https://i.pinimg.com/236x/a0/0b/71/a00b7134231bf1fc4076840eb9d7f136.jpg" alt="Admin Photo">
+                    </div>
+                    <div class="name">nha</div>
+                </div>
+                <div class="admin-controls">
+                    <button id="createUserBtn">Create User</button>
+                    <button id="exportDataBtn">Export Data</button>
+                    <button id="importDataBtn">Import Data</button>
+                    <button id="settingsBtn">Settings</button>
+                </div>
+            </div>
+        </section>
+         
+        <section class="user-section">
+            <h2>User Management</h2>
+            
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search users...">
+                <button id="clearSearchBtn">Clear</button>
+            </div>
+            
+            <div class="user-count" id="userCount">
+                Total Users: 0
+            </div>
+            
+            <div class="user-cards" id="userCardsContainer">
+                <!-- User cards will be generated here -->
+            </div>
+        </section>
+
+</body>
+<SCript>
+// admin.html script
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize users array from localStorage or create empty array
+    let users = JSON.parse(localStorage.getItem('users')) || [];
+    
+    // Get DOM elements
+    const createUserBtn = document.getElementById('createUserBtn');
+    const createUserModal = document.getElementById('createUserModal');
+    const createUserForm = document.getElementById('createUserForm');
+    const editUserModal = document.getElementById('editUserModal');
+    const editUserForm = document.getElementById('editUserForm');
+    const notification = document.getElementById('notification');
+    const userCardsContainer = document.getElementById('userCardsContainer');
+    const userCountElement = document.getElementById('userCount');
+    const searchInput = document.getElementById('searchInput');
+    const clearSearchBtn = document.getElementById('clearSearchBtn');
+    
+    // Show create user modal
+    createUserBtn.addEventListener('click', function() {
+        createUserModal.style.display = 'block';
+    });
+    
+    // Close modals when clicking cancel buttons
+    document.querySelectorAll('.cancel').forEach(button => {
+        button.addEventListener('click', function() {
+            createUserModal.style.display = 'none';
+            editUserModal.style.display = 'none';
+        });
+    });
+    
+    // Handle create user form submission
+    createUserForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Get form values
+        const name = document.getElementById('userName').value;
+        const email = document.getElementById('userEmail').value;
+        const role = document.getElementById('userRole').value;
+        const photo = document.getElementById('userPhoto').value || 'https://i.pinimg.com/236x/a0/0b/71/a00b7134231bf1fc4076840eb9d7f136.jpg';
+        const status = document.getElementById('userStatus').value;
+        
+        // Create new user object
+        const newUser = {
+            id: Date.now().toString(),
+            name,
+            email,
+            role,
+            photo,
+            status,
+            createdAt: new Date().toISOString()
+        };
+        
+        // Add to users array
+        users.push(newUser);
+        
+        // Save to localStorage
+        localStorage.setItem('users', JSON.stringify(users));
+        
+        // Reset form
+        createUserForm.reset();
+        
+        // Close modal
+        createUserModal.style.display = 'none';
+        
+        // Show success notification
+        showNotification('User created successfully!', 'success');
+        
+        // Refresh the user list
+        renderUsers(users);
+    });
+    
+    // Handle edit user form submission
+    editUserForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const userId = document.getElementById('editUserId').value;
+        const name = document.getElementById('editUserName').value;
+        const email = document.getElementById('editUserEmail').value;
+        const role = document.getElementById('editUserRole').value;
+        const photo = document.getElementById('editUserPhoto').value;
+        const status = document.getElementById('editUserStatus').value;
+        
+        // Find user in array
+        const userIndex = users.findIndex(user => user.id === userId);
+        
+        if (userIndex !== -1) {
+            // Update user
+            users[userIndex] = {
+                ...users[userIndex],
+                name,
+                email,
+                role,
+                photo: photo || users[userIndex].photo,
+                status,
+                updatedAt: new Date().toISOString()
+            };
+            
+            // Save to localStorage
+            localStorage.setItem('users', JSON.stringify(users));
+            
+            // Close modal
+            editUserModal.style.display = 'none';
+            
+            // Show success notification
+            showNotification('User updated successfully!', 'success');
+            
+            // Refresh the user list
+            renderUsers(users);
+        }
+    });
+    
+    // Export data functionality
+    document.getElementById('exportDataBtn').addEventListener('click', function() {
+        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(users));
+        const downloadAnchorNode = document.createElement('a');
+        downloadAnchorNode.setAttribute("href", dataStr);
+        downloadAnchorNode.setAttribute("download", "users_export.json");
+        document.body.appendChild(downloadAnchorNode);
+        downloadAnchorNode.click();
+        downloadAnchorNode.remove();
+        
+        showNotification('Data exported successfully!', 'success');
+    });
+    
+    // Import data functionality
+    document.getElementById('importDataBtn').addEventListener('click', function() {
+        // Create a file input element
+        const fileInput = document.createElement('input');
+        fileInput.type = 'file';
+        fileInput.accept = '.json';
+        
+        fileInput.onchange = e => {
+            const file = e.target.files[0];
+            const reader = new FileReader();
+            
+            reader.onload = event => {
+                try {
+                    const importedData = JSON.parse(event.target.result);
+                    if (Array.isArray(importedData)) {
+                        // Merge with existing data or replace
+                        if (confirm('Replace existing users? Click OK to replace, Cancel to merge.')) {
+                            users = importedData;
+                        } else {
+                            // Merge by adding non-duplicate users (based on ID)
+                            const existingIds = users.map(u => u.id);
+                            importedData.forEach(user => {
+                                if (!existingIds.includes(user.id)) {
+                                    users.push(user);
+                                }
+                            });
+                        }
+                        localStorage.setItem('users', JSON.stringify(users));
+                        showNotification('Data imported successfully!', 'success');
+                        renderUsers(users);
+                    } else {
+                        showNotification('Invalid data format!', 'error');
+                    }
+                } catch (err) {
+                    showNotification('Error parsing file!', 'error');
+                }
+            };
+            
+            reader.readAsText(file);
+        };
+        
+        fileInput.click();
+    });
+    
+    // Render user cards with admin controls
+    function renderUsers(usersToRender) {
+        if (!userCardsContainer) return; // If we're not on the admin page with user cards
+        
+        userCardsContainer.innerHTML = '';
+        
+        if (usersToRender.length === 0) {
+            userCardsContainer.innerHTML = '<p>No users found.</p>';
+            return;
+        }
+        
+        usersToRender.forEach(user => {
+            const userCard = document.createElement('div');
+            userCard.className = 'user-card';
+            userCard.innerHTML = `
+                <div class="photo-placeholder">
+                    <img src="${user.photo || 'https://i.pinimg.com/236x/a0/0b/71/a00b7134231bf1fc4076840eb9d7f136.jpg'}" alt="${user.name}">
+                </div>
+                <h3>${user.name}</h3>
+                <p>${user.email}</p>
+                <p>Role: ${user.role}</p>
+                <p>Status: <span class="status-${user.status}"></span></p>
+                <div class="button-group">
+                    <button class="view-btn" data-id="${user.id}">View</button>
+                    <button class="edit-btn" data-id="${user.id}">Edit</button>
+                    <button class="delete-btn" data-id="${user.id}">Delete</button>
+                </div>
+            `;
+            userCardsContainer.appendChild(userCard);
+        });
+        
+        // Update user count if element exists
+        if (userCountElement) {
+            userCountElement.textContent = `Total Users: ${usersToRender.length}`;
+        }
+        
+        // Add event listeners to buttons
+        document.querySelectorAll('.delete-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const userId = this.getAttribute('data-id');
+                deleteUser(userId);
+            });
+        });
+        
+        document.querySelectorAll('.edit-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const userId = this.getAttribute('data-id');
+                openEditUserModal(userId);
+            });
+        });
+        
+        document.querySelectorAll('.view-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const userId = this.getAttribute('data-id');
+                viewUser(userId);
+            });
+        });
+    }
+    
+    // Search functionality
+    function searchUsers(query) {
+        if (!searchInput) return; // If we're not on a page with search
+        
+        if (!query) {
+            renderUsers(users);
+            return;
+        }
+        
+        const filtered = users.filter(user => 
+            user.name.toLowerCase().includes(query.toLowerCase()) ||
+            user.email.toLowerCase().includes(query.toLowerCase()) ||
+            user.role.toLowerCase().includes(query.toLowerCase())
+        );
+        
+        renderUsers(filtered);
+    }
+    
+    // Add search input event if it exists
+    if (searchInput) {
+        searchInput.addEventListener('input', function() {
+            searchUsers(this.value);
+        });
+    }
+    
+    // Add clear search event if it exists
+    if (clearSearchBtn) {
+        clearSearchBtn.addEventListener('click', function() {
+            searchInput.value = '';
+            renderUsers(users);
+        });
+    }
+    
+    // Delete user functionality
+    function deleteUser(userId) {
+        if (confirm('Are you sure you want to delete this user?')) {
+            users = users.filter(user => user.id !== userId);
+            localStorage.setItem('users', JSON.stringify(users));
+            renderUsers(users);
+            showNotification('User deleted successfully!', 'success');
+        }
+    }
+    
+    // Open edit user modal with user data
+    function openEditUserModal(userId) {
+        const user = users.find(u => u.id === userId);
+        if (user) {
+            document.getElementById('editUserId').value = user.id;
+            document.getElementById('editUserName').value = user.name;
+            document.getElementById('editUserEmail').value = user.email;
+            document.getElementById('editUserRole').value = user.role;
+            document.getElementById('editUserPhoto').value = user.photo;
+            document.getElementById('editUserStatus').value = user.status;
+            
+            editUserModal.style.display = 'block';
+        }
+    }
+    
+    // View user details
+    function viewUser(userId) {
+        const user = users.find(u => u.id === userId);
+        if (user) {
+            alert(`
+                User Details:
+                Name: ${user.name}
+                Email: ${user.email}
+                Role: ${user.role}
+                Status: ${user.status}
+                Created: ${new Date(user.createdAt).toLocaleString()}
+                ${user.updatedAt ? 'Updated: ' + new Date(user.updatedAt).toLocaleString() : ''}
+            `);
+        }
+    }
+    
+    // Check URL parameters for edit user request
+    function checkForEditUserRequest() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const editUserId = urlParams.get('editUser');
+        
+        if (editUserId) {
+            const user = users.find(u => u.id === editUserId);
+            if (user) {
+                openEditUserModal(user.id);
+            }
+        }
+    }
+    
+    // Helper function to show notifications
+    function showNotification(message, type = 'success') {
+        notification.textContent = message;
+        notification.className = `notification ${type} show`;
+        
+        setTimeout(() => {
+            notification.className = notification.className.replace('show', 'hide');
+        }, 3000);
+    }
+    
+    // Settings button functionality
+    document.getElementById('settingsBtn').addEventListener('click', function() {
+        alert('Settings functionality will be implemented in a future update.');
+    });
+    
+    // Initialize the page
+    checkForEditUserRequest();
+    if (userCardsContainer) {
+        renderUsers(users);
+    }
+});
+</SCript>
+</html>
